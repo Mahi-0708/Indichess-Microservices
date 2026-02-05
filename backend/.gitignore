@@ -1,0 +1,40 @@
+# ======================
+# OS / System
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# IDEs
+# ======================
+.idea/
+.vscode/
+*.iml
+
+# ======================
+# Java / Spring Boot
+# ======================
+target/
+*.class
+*.log
+
+# ======================
+# Node / React
+# ======================
+node_modules/
+dist/
+build/
+
+# ======================
+# Environment / Secrets
+# ======================
+.env
+*.env
+application.properties
+application.yml
+
+# ======================
+# Maven / Gradle
+# ======================
+.mvn/
+.gradle/

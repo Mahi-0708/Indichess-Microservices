@@ -1,0 +1,71 @@
+/* Board container using Grid */
+.board-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 5px solid #333;
+  box-sizing: border-box;
+}
+
+/* Individual square */
+.square {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Colors */
+.light {
+  background-color: #eeeed2;
+}
+
+.dark {
+  background-color: #769656;
+}
+
+.highlight {
+  background-color: rgba(255, 255, 0, 0.3) !important;
+}
+
+/* Piece styling */
+.piece {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  /* Prevent piece from capturing pointer events for dragenter/leave on square */
+  pointer-events: auto;
+}
+
+.piece:active {
+  cursor: grabbing;
+}
+
+/* Coordinates */
+.coordinate {
+  position: absolute;
+  font-size: 10px;
+  font-weight: bold;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Connection indicator (legacy but kept) */
+.connection-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  color: white;
+}

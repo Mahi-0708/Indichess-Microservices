@@ -1,0 +1,688 @@
+:root {
+  /* Dark Theme (Default) - Screenshot Style */
+  --bg-dark: #000000;
+  --bg-sidebar: #000000;
+  --bg-card: #121212;
+  --primary-green: #81b64c;
+  --primary-green-hover: #a3d160;
+  --text-main: #bababa;
+  --text-bright: #ffffff;
+  --border-color: #1a1a1a;
+  --bg-input: #0a0a0a;
+}
+
+.light-theme {
+  /* Light Theme Overrides */
+  --bg-dark: #f1f1f1;
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --text-main: #666666;
+  --text-bright: #333333;
+  --border-color: #dddddd;
+  --bg-input: #f9f9f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-dark);
+  overflow-y: auto;
+  transition: background-color 0.3s;
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0;
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Authentication Cards (Login/Signup) */
+.home-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1528819622765-d6bcf132f793?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.login-card,
+.signup-card {
+  background-color: rgba(43, 41, 37, 0.95);
+  padding: 48px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  color: var(--text-bright);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-card h2,
+.signup-card h2 {
+  margin-top: 0;
+  margin-bottom: 32px;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-align: center;
+  background: linear-gradient(45deg, #fff, #bababa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Dashboard Refinements */
+.hero-section {
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1528819622765-d6bcf132f793?q=80&w=2070&auto=format&fit=crop");
+  height: 280px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px;
+  margin-bottom: 32px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+
+.hero-section h1 {
+  position: relative;
+  z-index: 1;
+  color: white;
+  font-size: 48px;
+  margin: 0 0 12px;
+  font-weight: 800;
+}
+
+.hero-section p {
+  position: relative;
+  z-index: 1;
+  color: #bababa;
+  font-size: 16px;
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+.stat-card {
+  background-color: var(--bg-card);
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease-in-out;
+  flex: 1;
+  cursor: pointer;
+}
+
+.stat-card:hover {
+  background-color: #1a1a1a;
+  border-color: #333;
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  font-size: 32px;
+  color: var(--primary-green);
+  background: rgba(129, 182, 76, 0.1);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.stat-card:hover .stat-icon {
+  background: var(--primary-green);
+  color: white;
+  transform: rotate(8deg) scale(1.1);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 24px;
+  color: var(--text-bright);
+  font-weight: 800;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-bright);
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+}
+
+.simple-auth-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin: 16px 0;
+}
+
+.simple-auth-btn:hover {
+  background-color: var(--primary-green-hover);
+}
+
+.simple-auth-btn:active {
+  transform: translateY(1px);
+}
+
+.oauth-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.oauth-buttons a {
+  flex: 1;
+}
+
+.oauth-buttons button {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-bright);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-google:hover {
+  background-color: #4285f4;
+  border-color: #4285f4;
+}
+
+.btn-github:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.signup-link,
+.login-link {
+  color: var(--text-main);
+  font-size: 14px;
+  text-align: center;
+}
+
+.error-message {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #ff5f5f;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.options-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-item {
+  background-color: #121212;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #bababa;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.option-item:hover {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.option-item.primary {
+  background-color: #81b64c;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  justify-content: center;
+  border: none;
+}
+
+.option-item.primary:hover {
+  background-color: #95cc5a;
+  transform: scale(1.02);
+}
+
+.option-item.active {
+  background-color: rgba(129, 182, 76, 0.1);
+  border-color: #81b64c;
+  color: #81b64c;
+}
+
+/* Dropdown Styles */
+.dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin-top: 8px;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #bababa;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #262626;
+  color: white;
+}
+
+/* Game Page Layout */
+.game-page-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  background-color: #000;
+  color: white;
+}
+
+.game-main-area {
+  background-color: #121212;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #262626;
+}
+
+.game-side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.game-status-card {
+  background-color: #121212;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #262626;
+}
+
+.game-status-card h3 {
+  margin: 0 0 12px;
+  color: #81b64c;
+  font-size: 18px;
+}
+
+.game-info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #bababa;
+}
+
+.game-info-value {
+  color: white;
+  font-weight: bold;
+}
+
+.game-controls-bar {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.btn-game-control {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #262626;
+  color: #bababa;
+}
+
+.btn-game-control:hover {
+  background-color: #333;
+  color: white;
+}
+
+.btn-game-control.danger {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.btn-game-control.danger:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Status Badge */
+.game-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: #262626;
+  color: #666;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.active {
+  background-color: rgba(129, 182, 76, 0.2);
+  color: #81b64c;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Moves Container */
+.moves-container-card {
+  background-color: #121212;
+  border-radius: 12px;
+  border: 1px solid #262626;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.moves-header {
+  padding: 12px 20px;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #262626;
+}
+
+.moves-header h4 {
+  margin: 0;
+  color: #bababa;
+  font-size: 14px;
+}
+
+.moves-list {
+  padding: 12px 0;
+  overflow-y: auto;
+  flex: 1;
+  max-height: 400px;
+}
+
+/* Custom Scrollbar for Move List */
+.moves-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.moves-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.moves-list::-webkit-scrollbar-thumb {
+  background: #3c3c3c;
+  border-radius: 3px;
+}
+
+.moves-list::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+.move-pair {
+  display: flex;
+  padding: 8px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.move-pair:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.move-number {
+  color: #666;
+  width: 30px;
+  font-weight: bold;
+}
+
+.move-white,
+.move-black {
+  flex: 1;
+  color: white;
+  cursor: pointer;
+}
+
+.move-white:hover,
+.move-black:hover {
+  background-color: rgba(129, 182, 76, 0.2);
+}
+
+/* Square Highlighting & Dots */
+.square.selected {
+  background-color: rgba(255, 255, 0, 0.3) !important;
+}
+
+.possible-move-dot {
+  width: 14px;
+  height: 14px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* If square has piece, dot becomes a ring */
+.square:has(.piece-container) .possible-move-dot {
+  width: 80%;
+  height: 80%;
+  background: transparent;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.no-moves {
+  padding: 24px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.dropdown-item svg {
+  color: #81b64c;
+}
+
+.recent-games-container {
+  margin-top: 32px;
+  background-color: #121212;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.recent-game-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #1a1a1a;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.recent-game-item:hover {
+  background-color: #1a1a1a;
+}
+
+.game-result-win {
+  color: #81b64c;
+  font-weight: bold;
+}
